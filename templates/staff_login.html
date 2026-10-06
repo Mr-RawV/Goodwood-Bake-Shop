@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Goodwood Bake Shop - Staff Login</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='staff.css') }}">
+</head>
+<body>
+<div class="staff-login-page">
+    <div class="staff-login-card">
+        <div class="staff-brand-mark">🍞</div>
+        <h1>Goodwood Bake Shop</h1>
+        <p class="tagline">Staff Portal Login</p>
+
+        {% if error %}
+        <div class="staff-alert">{{ error }}</div>
+        {% endif %}
+
+        <form method="POST" action="{{ url_for('staff_login') }}">
+            <label for="email">Staff Email</label>
+            <input id="email" type="email" name="email" required autocomplete="username">
+
+            <label for="password">Password</label>
+            <input id="password" type="password" name="password" required autocomplete="current-password">
+
+            <button type="submit" class="primary">Staff Login</button>
+        </form>
+
+        <div class="staff-demo-box">
+            <strong>Staff demo login</strong>
+            Email: staff@goodwood.com<br>
+            Password: GoodwoodStaff23
+        </div>
+
+        <div class="staff-back-link">
+            <a href="{{ url_for('login') }}">← Back to Customer Login</a>
+        </div>
+    </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,1669 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <title>Products | Goodwood Bake Shop</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='products.css') }}">
+
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap"
+          rel="stylesheet">
+
+    <style>
+
+        .add-to-cart {
+            display: inline-block;
+            margin-top: 15px;
+            padding: 11px 20px;
+            background: #33241f;
+            color: white;
+            text-decoration: none;
+            border-radius: 6px;
+            font-family: Arial, sans-serif;
+            font-weight: 600;
+            cursor: pointer;
+        }
+
+        .add-to-cart:hover {
+            background: #7b4b3a;
+        }
+
+        .contact-box a {
+            color: #ffffff !important;
+            text-decoration: underline;
+            font-weight: 600;
+            cursor: pointer;
+        }
+
+        .contact-box a:hover {
+            color: #f5c6a5 !important;
+        }
+
+        /* SHOPPING NAVIGATION */
+
+        .shop-nav {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .shop-nav a {
+            text-decoration: none;
+            color: #33241f;
+            font-weight: 600;
+        }
+
+        .cart-button {
+            background: #33241f !important;
+            color: white !important;
+            padding: 11px 18px;
+            border-radius: 6px;
+        }
+
+        .logout-button {
+            border: 1px solid #33241f;
+            padding: 10px 16px;
+            border-radius: 6px;
+        }
+
+
+        /* DIETARY INFORMATION */
+        .dietary-info {
+            margin-top: 12px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+        }
+
+        .dietary-label {
+            display: inline-block;
+            padding: 5px 9px;
+            border-radius: 5px;
+            background: #f5f1ed;
+            color: #33241f;
+            font-size: 13px;
+            line-height: 1.3;
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+<!-- =====================================================
+     HEADER
+===================================================== -->
+
+<header class="header">
+
+    <div class="container nav">
+
+
+        <!-- LOGO - NOT A LINK -->
+
+        <div class="logo">
+
+            Goodwood
+
+            <span>Bake Shop</span>
+
+        </div>
+
+
+        <!-- NAVIGATION -->
+
+        <nav class="shop-nav">
+
+            <a href="#products">
+                Products
+            </a>
+
+            <a href="#custom-cakes">
+                Custom Cakes
+            </a>
+
+            <a href="#contact">
+                Contact
+            </a>
+
+            <a href="{{ url_for('checkout') }}"
+               class="cart-button">
+
+                🛒 Cart
+
+            </a>
+            <a href="{{ url_for('profile') }}"
+            class="profile-button">
+                👤 Profile
+            </a>
+            <a href="{{ url_for('logout') }}"
+               class="logout-button">
+
+                Logout
+
+            </a>
+
+        </nav>
+
+
+        <a href="#enquiry"
+           class="nav-button">
+
+            Order a Cake
+
+        </a>
+
+    </div>
+
+</header>
+
+
+
+<!-- =====================================================
+     INTRO
+===================================================== -->
+
+<section class="intro">
+
+    <div class="container">
+
+        <p class="small-title">
+            GOODWOOD BAKE SHOP
+        </p>
+
+
+        <h1>
+
+            Freshly Baked,<br>
+            Made With Love.
+
+        </h1>
+
+
+        <p class="intro-text">
+
+            Explore our selection of cakes, cupcakes,
+            pastries and cookies.
+            Every treat is freshly prepared with
+            quality ingredients.
+
+        </p>
+
+    </div>
+
+</section>
+
+
+
+<!-- =====================================================
+     PRODUCTS
+===================================================== -->
+
+<section class="products-section"
+         id="products">
+
+    <div class="container">
+
+
+        <div class="section-heading">
+
+            <div>
+
+                <p class="small-title">
+                    OUR MENU
+                </p>
+
+                <h2>
+                    Bakery Products
+                </h2>
+
+            </div>
+
+
+            <p>
+
+                Simple, delicious and freshly baked
+                for every occasion.
+
+            </p>
+
+        </div>
+
+
+
+        <div class="products-grid">
+
+
+            <!-- CAKE 1 -->
+
+            <div class="product-card">
+
+                <img
+                    src="https://images.unsplash.com/photo-1578985545062-69928b1d9587?auto=format&fit=crop&w=700&q=80"
+                    alt="Chocolate Fudge Cake">
+
+                <div class="product-info">
+
+                    <span class="category">
+                        CAKE
+                    </span>
+
+                    <h3>
+                        Chocolate Fudge Cake
+                    </h3>
+
+                    <p>
+                        Rich chocolate cake with
+                        smooth chocolate frosting.
+                    </p>
+                    <div class="dietary-info">
+                        <span class="dietary-label">Gluten-Free: No</span>
+                        <span class="dietary-label">Dairy-Free: No</span>
+                        <span class="dietary-label">Nut-Free: Yes</span>
+                    </div>
+
+
+                    <div class="product-bottom">
+
+                        <strong>
+                            $28
+                        </strong>
+
+                        <span>
+                            8–10 servings
+                        </span>
+
+                    </div>
+
+                    <a
+                        href="{{ url_for('add_to_cart',
+                        product='Chocolate Fudge Cake',
+                        price='28') }}"
+                        class="add-to-cart">
+
+                        Add to Cart
+
+                    </a>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- CAKE 2 -->
+
+            <div class="product-card">
+
+                <img
+                    src="https://images.unsplash.com/photo-1565958011703-44f9829ba187?auto=format&fit=crop&w=700&q=80"
+                    alt="Strawberry Cream Cake">
+
+                <div class="product-info">
+
+                    <span class="category">
+                        CAKE
+                    </span>
+
+                    <h3>
+                        Strawberry Cream
+                    </h3>
+
+                    <p>
+                        Soft vanilla sponge layered
+                        with strawberry cream.
+                    </p>
+                    <div class="dietary-info">
+                        <span class="dietary-label">Gluten-Free: No</span>
+                        <span class="dietary-label">Dairy-Free: No</span>
+                        <span class="dietary-label">Nut-Free: Yes</span>
+                    </div>
+
+
+                    <div class="product-bottom">
+
+                        <strong>
+                            $30
+                        </strong>
+
+                        <span>
+                            8–10 servings
+                        </span>
+
+                    </div>
+
+                    <a
+                        href="{{ url_for('add_to_cart',
+                        product='Strawberry Cream',
+                        price='30') }}"
+                        class="add-to-cart">
+
+                        Add to Cart
+
+                    </a>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- CAKE 3 -->
+
+            <div class="product-card">
+
+                <img
+                    src="https://images.unsplash.com/photo-1586788680434-30d324b2d46f?auto=format&fit=crop&w=700&q=80"
+                    alt="Red Velvet Cake">
+
+                <div class="product-info">
+
+                    <span class="category">
+                        CAKE
+                    </span>
+
+                    <h3>
+                        Red Velvet
+                    </h3>
+
+                    <p>
+                        Classic red velvet sponge
+                        with creamy frosting.
+                    </p>
+                    <div class="dietary-info">
+                        <span class="dietary-label">Gluten-Free: No</span>
+                        <span class="dietary-label">Dairy-Free: No</span>
+                        <span class="dietary-label">Nut-Free: Yes</span>
+                    </div>
+
+
+                    <div class="product-bottom">
+
+                        <strong>
+                            $32
+                        </strong>
+
+                        <span>
+                            8–10 servings
+                        </span>
+
+                    </div>
+
+                    <a
+                        href="{{ url_for('add_to_cart',
+                        product='Red Velvet',
+                        price='32') }}"
+                        class="add-to-cart">
+
+                        Add to Cart
+
+                    </a>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- CAKE 4 -->
+
+            <div class="product-card">
+
+                <img
+                    src="https://images.unsplash.com/photo-1606890737304-57a1ca8a5b62?auto=format&fit=crop&w=700&q=80"
+                    alt="Classic Vanilla Cake">
+
+                <div class="product-info">
+
+                    <span class="category">
+                        CAKE
+                    </span>
+
+                    <h3>
+                        Classic Vanilla
+                    </h3>
+
+                    <p>
+                        Light vanilla sponge finished
+                        with vanilla buttercream.
+                    </p>
+                    <div class="dietary-info">
+                        <span class="dietary-label">Gluten-Free: No</span>
+                        <span class="dietary-label">Dairy-Free: No</span>
+                        <span class="dietary-label">Nut-Free: Yes</span>
+                    </div>
+
+
+                    <div class="product-bottom">
+
+                        <strong>
+                            $25
+                        </strong>
+
+                        <span>
+                            8–10 servings
+                        </span>
+
+                    </div>
+
+                    <a
+                        href="{{ url_for('add_to_cart',
+                        product='Classic Vanilla',
+                        price='25') }}"
+                        class="add-to-cart">
+
+                        Add to Cart
+
+                    </a>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- CUPCAKE 1 -->
+
+            <div class="product-card">
+
+                <img
+                    src="https://images.unsplash.com/photo-1587668178277-295251f900ce?auto=format&fit=crop&w=700&q=80"
+                    alt="Chocolate Dream Cupcakes">
+
+                <div class="product-info">
+
+                    <span class="category">
+                        CUPCAKES
+                    </span>
+
+                    <h3>
+                        Chocolate Dream
+                    </h3>
+
+                    <p>
+                        Moist chocolate cupcakes
+                        with creamy chocolate topping.
+                    </p>
+                    <div class="dietary-info">
+                        <span class="dietary-label">Gluten-Free: No</span>
+                        <span class="dietary-label">Dairy-Free: No</span>
+                        <span class="dietary-label">Nut-Free: Yes</span>
+                    </div>
+
+
+                    <div class="product-bottom">
+
+                        <strong>
+                            $14
+                        </strong>
+
+                        <span>
+                            Box of 6
+                        </span>
+
+                    </div>
+
+                    <a
+                        href="{{ url_for('add_to_cart',
+                        product='Chocolate Dream',
+                        price='14') }}"
+                        class="add-to-cart">
+
+                        Add to Cart
+
+                    </a>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- CUPCAKE 2 -->
+
+            <div class="product-card">
+
+                <img
+                    src="https://images.unsplash.com/photo-1519869325930-281384150729?auto=format&fit=crop&w=700&q=80"
+                    alt="Vanilla Celebration Cupcakes">
+
+                <div class="product-info">
+
+                    <span class="category">
+                        CUPCAKES
+                    </span>
+
+                    <h3>
+                        Vanilla Celebration
+                    </h3>
+
+                    <p>
+                        Soft vanilla cupcakes
+                        with smooth buttercream.
+                    </p>
+                    <div class="dietary-info">
+                        <span class="dietary-label">Gluten-Free: No</span>
+                        <span class="dietary-label">Dairy-Free: No</span>
+                        <span class="dietary-label">Nut-Free: Yes</span>
+                    </div>
+
+
+                    <div class="product-bottom">
+
+                        <strong>
+                            $13
+                        </strong>
+
+                        <span>
+                            Box of 6
+                        </span>
+
+                    </div>
+
+                    <a
+                        href="{{ url_for('add_to_cart',
+                        product='Vanilla Celebration',
+                        price='13') }}"
+                        class="add-to-cart">
+
+                        Add to Cart
+
+                    </a>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- CUPCAKE 3 -->
+
+            <div class="product-card">
+
+                <img
+                    src="https://images.unsplash.com/photo-1607478900766-efe13248b125?auto=format&fit=crop&w=700&q=80"
+                    alt="Red Velvet Cupcakes">
+
+                <div class="product-info">
+
+                    <span class="category">
+                        CUPCAKES
+                    </span>
+
+                    <h3>
+                        Red Velvet
+                    </h3>
+
+                    <p>
+                        Red velvet cupcakes finished
+                        with cream cheese frosting.
+                    </p>
+                    <div class="dietary-info">
+                        <span class="dietary-label">Gluten-Free: No</span>
+                        <span class="dietary-label">Dairy-Free: No</span>
+                        <span class="dietary-label">Nut-Free: Yes</span>
+                    </div>
+
+                    <div class="product-bottom">
+
+                        <strong>
+                            $15
+                        </strong>
+
+                        <span>
+                            Box of 6
+                        </span>
+
+                    </div>
+
+                    <a
+                        href="{{ url_for('add_to_cart',
+                        product='Red Velvet Cupcakes',
+                        price='15') }}"
+                        class="add-to-cart">
+
+                        Add to Cart
+
+                    </a>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- CUPCAKE 4 -->
+
+            <div class="product-card">
+
+                <img
+                    src="https://images.unsplash.com/photo-1607478900766-efe13248b125?auto=format&fit=crop&w=700&q=80"
+                    alt="Strawberry Cupcakes">
+
+                <div class="product-info">
+
+                    <span class="category">
+                        CUPCAKES
+                    </span>
+
+                    <h3>
+                        Strawberry Swirl
+                    </h3>
+
+                    <p>
+                        Strawberry cupcakes with
+                        a fresh creamy swirl.
+                    </p>
+                    <div class="dietary-info">
+                        <span class="dietary-label">Gluten-Free: No</span>
+                        <span class="dietary-label">Dairy-Free: No</span>
+                        <span class="dietary-label">Nut-Free: Yes</span>
+                    </div>
+
+
+                    <div class="product-bottom">
+
+                        <strong>
+                            $15
+                        </strong>
+
+                        <span>
+                            Box of 6
+                        </span>
+
+                    </div>
+
+                    <a
+                        href="{{ url_for('add_to_cart',
+                        product='Strawberry Swirl',
+                        price='15') }}"
+                        class="add-to-cart">
+
+                        Add to Cart
+
+                    </a>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- PASTRY 1 -->
+
+            <div class="product-card">
+
+                <img
+                    src="https://images.unsplash.com/photo-1555507036-ab1f4038808a?auto=format&fit=crop&w=700&q=80"
+                    alt="Butter Croissant">
+
+                <div class="product-info">
+
+                    <span class="category">
+                        PASTRY
+                    </span>
+
+                    <h3>
+                        Butter Croissant
+                    </h3>
+
+                    <p>
+                        Golden, flaky and buttery
+                        French-style croissant.
+                    </p>
+                    <div class="dietary-info">
+                        <span class="dietary-label">Gluten-Free: No</span>
+                        <span class="dietary-label">Dairy-Free: No</span>
+                        <span class="dietary-label">Nut-Free: Yes</span>
+                    </div>
+
+
+                    <div class="product-bottom">
+
+                        <strong>
+                            $3
+                        </strong>
+
+                        <span>
+                            Per piece
+                        </span>
+
+                    </div>
+
+                    <a
+                        href="{{ url_for('add_to_cart',
+                        product='Butter Croissant',
+                        price='3') }}"
+                        class="add-to-cart">
+
+                        Add to Cart
+
+                    </a>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- PASTRY 2 -->
+
+            <div class="product-card">
+
+                <img
+                    src="https://images.unsplash.com/photo-1623334044303-241021148842?auto=format&fit=crop&w=700&q=80"
+                    alt="Chocolate Danish">
+
+                <div class="product-info">
+
+                    <span class="category">
+                        PASTRY
+                    </span>
+
+                    <h3>
+                        Chocolate Danish
+                    </h3>
+
+                    <p>
+                        Flaky pastry filled
+                        with rich chocolate.
+                    </p>
+                    <div class="dietary-info">
+                        <span class="dietary-label">Gluten-Free: No</span>
+                        <span class="dietary-label">Dairy-Free: No</span>
+                        <span class="dietary-label">Nut-Free: Yes</span>
+                    </div>
+
+
+                    <div class="product-bottom">
+
+                        <strong>
+                            $4
+                        </strong>
+
+                        <span>
+                            Per piece
+                        </span>
+
+                    </div>
+
+                    <a
+                        href="{{ url_for('add_to_cart',
+                        product='Chocolate Danish',
+                        price='4') }}"
+                        class="add-to-cart">
+
+                        Add to Cart
+
+                    </a>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- PASTRY 3 -->
+
+            <div class="product-card">
+
+                <img
+                    src="https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&w=700&q=80"
+                    alt="Fruit Danish">
+
+                <div class="product-info">
+
+                    <span class="category">
+                        PASTRY
+                    </span>
+
+                    <h3>
+                        Fruit Danish
+                    </h3>
+
+                    <p>
+                        Crisp pastry topped
+                        with sweet seasonal fruit.
+                    </p>
+                    <div class="dietary-info">
+                        <span class="dietary-label">Gluten-Free: No</span>
+                        <span class="dietary-label">Dairy-Free: No</span>
+                        <span class="dietary-label">Nut-Free: Yes</span>
+                    </div>
+
+
+                    <div class="product-bottom">
+
+                        <strong>
+                            $4
+                        </strong>
+
+                        <span>
+                            Per piece
+                        </span>
+
+                    </div>
+
+                    <a
+                        href="{{ url_for('add_to_cart',
+                        product='Fruit Danish',
+                        price='4') }}"
+                        class="add-to-cart">
+
+                        Add to Cart
+
+                    </a>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- PASTRY 4 -->
+
+            <div class="product-card">
+
+                <img
+                    src="https://images.unsplash.com/photo-1603532648955-039310d9ed75?auto=format&fit=crop&w=700&q=80"
+                    alt="Morning Pastry">
+
+                <div class="product-info">
+
+                    <span class="category">
+                        PASTRY
+                    </span>
+
+                    <h3>
+                        Morning Pastry
+                    </h3>
+
+                    <p>
+                        A light, buttery pastry
+                        perfect with morning tea.
+                    </p>
+                    <div class="dietary-info">
+                        <span class="dietary-label">Gluten-Free: No</span>
+                        <span class="dietary-label">Dairy-Free: No</span>
+                        <span class="dietary-label">Nut-Free: Yes</span>
+                    </div>
+
+
+                    <div class="product-bottom">
+
+                        <strong>
+                            $3
+                        </strong>
+
+                        <span>
+                            Per piece
+                        </span>
+
+                    </div>
+
+                    <a
+                        href="{{ url_for('add_to_cart',
+                        product='Morning Pastry',
+                        price='3') }}"
+                        class="add-to-cart">
+
+                        Add to Cart
+
+                    </a>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- COOKIE 1 -->
+
+            <div class="product-card">
+
+                <img
+                    src="https://images.unsplash.com/photo-1499636136210-6f4ee915583e?auto=format&fit=crop&w=700&q=80"
+                    alt="Chocolate Chip Cookies">
+
+                <div class="product-info">
+
+                    <span class="category">
+                        COOKIES
+                    </span>
+
+                    <h3>
+                        Chocolate Chip
+                    </h3>
+
+                    <p>
+                        Soft-baked cookies packed
+                        with chocolate chips.
+                    </p>
+                    <div class="dietary-info">
+                        <span class="dietary-label">Gluten-Free: No</span>
+                        <span class="dietary-label">Dairy-Free: No</span>
+                        <span class="dietary-label">Nut-Free: Yes</span>
+                    </div>
+
+
+                    <div class="product-bottom">
+
+                        <strong>
+                            $8
+                        </strong>
+
+                        <span>
+                            Box of 6
+                        </span>
+
+                    </div>
+
+                    <a
+                        href="{{ url_for('add_to_cart',
+                        product='Chocolate Chip',
+                        price='8') }}"
+                        class="add-to-cart">
+
+                        Add to Cart
+
+                    </a>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- COOKIE 2 -->
+
+            <div class="product-card">
+
+                <img
+                    src="https://images.unsplash.com/photo-1558961363-fa8fdf82db35?auto=format&fit=crop&w=700&q=80"
+                    alt="Double Chocolate Cookies">
+
+                <div class="product-info">
+
+                    <span class="category">
+                        COOKIES
+                    </span>
+
+                    <h3>
+                        Double Chocolate
+                    </h3>
+
+                    <p>
+                        Deep chocolate cookies
+                        for chocolate lovers.
+                    </p>
+                    <div class="dietary-info">
+                        <span class="dietary-label">Gluten-Free: No</span>
+                        <span class="dietary-label">Dairy-Free: No</span>
+                        <span class="dietary-label">Nut-Free: Yes</span>
+                    </div>
+
+
+                    <div class="product-bottom">
+
+                        <strong>
+                            $9
+                        </strong>
+
+                        <span>
+                            Box of 6
+                        </span>
+
+                    </div>
+
+                    <a
+                        href="{{ url_for('add_to_cart',
+                        product='Double Chocolate',
+                        price='9') }}"
+                        class="add-to-cart">
+
+                        Add to Cart
+
+                    </a>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- COOKIE 3 -->
+
+            <div class="product-card">
+
+                <img
+                    src="https://images.unsplash.com/photo-1490474418585-ba9bad8fd0ea?auto=format&fit=crop&w=700&q=80"
+                    alt="Oatmeal Cookies">
+
+                <div class="product-info">
+
+                    <span class="category">
+                        COOKIES
+                    </span>
+
+                    <h3>
+                        Oatmeal Crunch
+                    </h3>
+
+                    <p>
+                        Classic oatmeal cookies
+                        with a satisfying crunch.
+                    </p>
+                    <div class="dietary-info">
+                        <span class="dietary-label">Gluten-Free: No</span>
+                        <span class="dietary-label">Dairy-Free: No</span>
+                        <span class="dietary-label">Nut-Free: Yes</span>
+                    </div>
+
+
+                    <div class="product-bottom">
+
+                        <strong>
+                            $8
+                        </strong>
+
+                        <span>
+                            Box of 6
+                        </span>
+
+                    </div>
+
+                    <a
+                        href="{{ url_for('add_to_cart',
+                        product='Oatmeal Crunch',
+                        price='8') }}"
+                        class="add-to-cart">
+
+                        Add to Cart
+
+                    </a>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- COOKIE 4 -->
+
+            <div class="product-card">
+
+                <img
+                    src="https://images.unsplash.com/photo-1590080875515-8a3a8dc5735e?auto=format&fit=crop&w=700&q=80"
+                    alt="Goodwood Cookie Box">
+
+                <div class="product-info">
+
+                    <span class="category">
+                        COOKIES
+                    </span>
+
+                    <h3>
+                        Goodwood Cookie Box
+                    </h3>
+
+                    <p>
+                        A selection of our favourite
+                        freshly baked cookies.
+                    </p>
+                    <div class="dietary-info">
+                        <span class="dietary-label">Gluten-Free: No</span>
+                        <span class="dietary-label">Dairy-Free: No</span>
+                        <span class="dietary-label">Nut-Free: Yes</span>
+                    </div>
+
+
+                    <div class="product-bottom">
+
+                        <strong>
+                            $10
+                        </strong>
+
+                        <span>
+                            Box of 6
+                        </span>
+
+                    </div>
+
+                    <a
+                        href="{{ url_for('add_to_cart',
+                        product='Goodwood Cookie Box',
+                        price='10') }}"
+                        class="add-to-cart">
+
+                        Add to Cart
+
+                    </a>
+
+                </div>
+
+            </div>
+
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- =====================================================
+     CUSTOM CAKES
+===================================================== -->
+
+<section class="custom-section"
+         id="custom-cakes">
+
+    <div class="container custom-layout">
+
+
+        <div class="custom-content">
+
+            <p class="small-title">
+                CUSTOM CAKES
+            </p>
+
+
+            <h2>
+                Your Idea.<br>
+                Our Kitchen.
+            </h2>
+
+
+            <p>
+
+                Planning a birthday, wedding,
+                anniversary or special celebration?
+                Tell us what you have in mind and
+                our bakers will create a cake around
+                your occasion.
+
+            </p>
+
+
+            <div class="steps">
+
+
+                <div class="step">
+
+                    <span>
+                        01
+                    </span>
+
+                    <div>
+
+                        <h3>
+                            Choose Your Flavour
+                        </h3>
+
+                        <p>
+                            Chocolate, vanilla,
+                            red velvet and more.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="step">
+
+                    <span>
+                        02
+                    </span>
+
+                    <div>
+
+                        <h3>
+                            Choose Your Size
+                        </h3>
+
+                        <p>
+                            Select the servings needed
+                            for your event.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="step">
+
+                    <span>
+                        03
+                    </span>
+
+                    <div>
+
+                        <h3>
+                            Describe Your Design
+                        </h3>
+
+                        <p>
+                            Share your theme,
+                            colours and cake ideas.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+            </div>
+
+        </div>
+
+
+        <div class="custom-image">
+
+            <img
+                src="https://images.unsplash.com/photo-1558301211-0d8c8ddee6ec?auto=format&fit=crop&w=900&q=80"
+                alt="Custom celebration cake">
+
+        </div>
+
+
+    </div>
+
+</section>
+
+
+
+<!-- =====================================================
+     CAKE ENQUIRY
+===================================================== -->
+
+<section class="enquiry-section"
+         id="enquiry">
+
+    <div class="container">
+
+
+        <div class="section-heading">
+
+            <div>
+
+                <p class="small-title">
+                    CAKE ENQUIRY
+                </p>
+
+                <h2>
+                    Tell Us About Your Cake
+                </h2>
+
+            </div>
+
+        </div>
+
+
+        <form
+            action="{{ url_for('cake_enquiry') }}"
+            method="POST"
+            class="enquiry-form">
+
+
+            <div class="form-row">
+
+
+                <div class="form-group">
+
+                    <label for="name">
+                        Full Name
+                    </label>
+
+                    <input
+                        type="text"
+                        id="name"
+                        name="name"
+                        placeholder="Your name"
+                        required>
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="email">
+                        Email
+                    </label>
+
+                    <input
+                        type="email"
+                        id="email"
+                        name="email"
+                        placeholder="you@example.com"
+                        required>
+
+                </div>
+
+
+            </div>
+
+
+
+            <div class="form-row">
+
+
+                <div class="form-group">
+
+                    <label for="cake_type">
+                        Cake Type
+                    </label>
+
+                    <select
+                        id="cake_type"
+                        name="cake_type">
+
+                        <option>
+                            Birthday Cake
+                        </option>
+
+                        <option>
+                            Wedding Cake
+                        </option>
+
+                        <option>
+                            Anniversary Cake
+                        </option>
+
+                        <option>
+                            Graduation Cake
+                        </option>
+
+                        <option>
+                            Other
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="cake_size">
+                        Cake Size
+                    </label>
+
+                    <select
+                        id="cake_size"
+                        name="cake_size">
+
+                        <option>
+                            8–10 servings
+                        </option>
+
+                        <option>
+                            12–15 servings
+                        </option>
+
+                        <option>
+                            20–25 servings
+                        </option>
+
+                        <option>
+                            30+ servings
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+            </div>
+
+
+
+            <div class="form-group">
+
+                <label for="message">
+                    Additional Details
+                </label>
+
+                <textarea
+                    id="message"
+                    name="message"
+                    rows="5"
+                    placeholder="Tell us about your cake..."></textarea>
+
+            </div>
+
+
+            <button
+                type="submit"
+                class="submit-button">
+
+                Send Cake Enquiry
+
+            </button>
+
+
+        </form>
+
+    </div>
+
+</section>
+
+
+
+
+<!-- =====================================================
+     CUSTOMER REVIEWS
+===================================================== -->
+
+<section class="review-section" id="reviews">
+
+    <div class="container">
+
+        <div class="section-heading">
+            <div>
+                <p class="small-title">
+                    CUSTOMER FEEDBACK
+                </p>
+
+                <h2>
+                    Please Leave a Review
+                </h2>
+            </div>
+
+            <p>
+                We would love to hear about your experience
+                at Goodwood Bake Shop.
+            </p>
+        </div>
+
+        {% if request.args.get("review_sent") == "1" %}
+            <div class="review-success">
+                Thank you! Your review has been sent to our staff.
+            </div>
+        {% endif %}
+
+        <form
+            action="{{ url_for('submit_review') }}"
+            method="POST"
+            class="review-form">
+
+            <div class="form-row">
+
+                <div class="form-group">
+                    <label for="review-name">
+                        Your Name
+                    </label>
+
+                    <input
+                        type="text"
+                        id="review-name"
+                        value="{{ user.name }}"
+                        readonly>
+                </div>
+
+                <div class="form-group">
+                    <label for="review-email">
+                        Email
+                    </label>
+
+                    <input
+                        type="email"
+                        id="review-email"
+                        value="{{ user.email }}"
+                        readonly>
+                </div>
+
+            </div>
+
+            <div class="form-group">
+                <label for="review">
+                    Your Review
+                </label>
+
+                <textarea
+                    id="review"
+                    name="review"
+                    rows="5"
+                    placeholder="Please leave a review..."
+                    required></textarea>
+            </div>
+
+            <button
+                type="submit"
+                class="submit-button">
+
+                Submit Review
+
+            </button>
+
+        </form>
+
+    </div>
+
+</section>
+
+<!-- =====================================================
+     CONTACT
+===================================================== -->
+
+<section class="contact-section"
+         id="contact">
+
+    <div class="container">
+
+
+        <p class="small-title">
+            CONTACT
+        </p>
+
+
+        <h2>
+            Visit Goodwood
+        </h2>
+
+
+        <div class="contact-grid">
+
+
+            <div class="contact-box">
+
+                <span>
+                    ADDRESS
+                </span>
+
+                <p>
+
+                   297 Marrickville Rd,<br>
+                 Marrickville NSW 2204
+
+                </p>
+
+            </div>
+
+
+            <div class="contact-box">
+
+                <span>
+                    PHONE
+                </span>
+
+                <p>
+                    0420543837
+                </p>
+
+            </div>
+
+
+            <div class="contact-box">
+
+                <span>
+                    DIRECTIONS
+                </span>
+
+                <p>
+
+                    <a
+                        href="https://www.google.com/maps/dir/?api=1&destination=297+Marrickville+Rd+Marrickville+NSW+2204"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        class="directions-link">
+
+                        🗺️ Open in Google Maps →
+
+                    </a>
+
+                </p>
+
+            </div>
+
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- =====================================================
+     FOOTER
+===================================================== -->
+
+<footer class="footer">
+
+    <div class="container">
+
+        <div class="footer-logo">
+            Goodwood Bake Shop
+        </div>
+
+
+        <p>
+            Freshly baked. Made with care.
+        </p>
+
+
+        <p class="copyright">
+
+            © 2026 Goodwood Bake Shop.
+            All rights reserved.
+
+        </p>
+
+    </div>
+
+</footer>
+
+<script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+
+</html>

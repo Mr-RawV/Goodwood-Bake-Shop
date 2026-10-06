@@ -1,0 +1,653 @@
+/* =====================================================
+   GOODWOOD BAKE SHOP - STAFF PORTAL STYLESHEET
+   Separate from the customer-facing styles.css / products.css
+   on purpose, so the staff portal reads as its own area.
+===================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Lora:wght@500;600;700&family=Poppins:wght@400;500;600;700&display=swap');
+
+:root {
+    --navy: #1E2761;
+    --navy-deep: #12173F;
+    --amber: #C97B1E;
+    --bg: #F4F1EA;
+    --card: #FFFFFF;
+    --border: #E3DFD6;
+    --text: #22252E;
+    --muted: #6B7280;
+    --success-bg: #EAF3E8;
+    --success-text: #3F6B36;
+    --error-bg: #FBEAEA;
+    --error-text: #A83232;
+
+    --radius: 12px;
+    --shadow: 0 10px 30px rgba(18, 23, 63, 0.08);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: "Poppins", sans-serif;
+    color: var(--text);
+    background: var(--bg);
+    line-height: 1.6;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+
+/* =====================================================
+   STAFF LOGIN
+===================================================== */
+
+.staff-login-page {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--navy-deep);
+    padding: 24px;
+}
+
+.staff-login-card {
+    width: 100%;
+    max-width: 380px;
+    background: var(--card);
+    border-radius: 16px;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.35);
+    padding: 40px 36px;
+    text-align: center;
+}
+
+.staff-brand-mark {
+    width: 56px;
+    height: 56px;
+    margin: 0 auto 18px;
+    border-radius: 50%;
+    background: var(--navy);
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+}
+
+.staff-login-card h1 {
+    font-family: "Lora", serif;
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--navy);
+}
+
+.staff-login-card .tagline {
+    color: var(--muted);
+    font-size: 13px;
+    margin: 6px 0 26px;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+}
+
+.staff-login-card form {
+    text-align: left;
+}
+
+.staff-login-card label {
+    display: block;
+    font-size: 13px;
+    font-weight: 600;
+    margin-bottom: 6px;
+    color: var(--text);
+}
+
+.staff-login-card input {
+    width: 100%;
+    padding: 12px 14px;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    font-family: inherit;
+    font-size: 14px;
+    margin-bottom: 18px;
+    outline: none;
+    background: #FDFCFA;
+}
+
+.staff-login-card input:focus {
+    border-color: var(--navy);
+    box-shadow: 0 0 0 3px rgba(30, 39, 97, 0.12);
+}
+
+.staff-login-card button.primary {
+    width: 100%;
+    padding: 13px;
+    border: none;
+    border-radius: 8px;
+    background: var(--navy);
+    color: white;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s ease;
+}
+
+.staff-login-card button.primary:hover {
+    background: var(--navy-deep);
+}
+
+.staff-demo-box {
+    margin-top: 20px;
+    padding: 14px 16px;
+    border-radius: 8px;
+    background: #FBEED6;
+    border: 1px solid #E8C48F;
+    font-size: 12.5px;
+    text-align: left;
+    color: #6B4A16;
+}
+
+.staff-demo-box strong {
+    display: block;
+    margin-bottom: 4px;
+    color: var(--navy);
+}
+
+.staff-back-link {
+    display: block;
+    margin-top: 22px;
+    font-size: 13px;
+    color: var(--muted);
+}
+
+.staff-back-link a {
+    color: var(--navy);
+    font-weight: 600;
+}
+
+.staff-alert {
+    background: var(--error-bg);
+    color: var(--error-text);
+    border: 1px solid #F0C6C6;
+    padding: 10px 14px;
+    border-radius: 8px;
+    font-size: 13px;
+    margin-bottom: 18px;
+    text-align: left;
+}
+
+
+/* =====================================================
+   STAFF DASHBOARD - SHELL
+===================================================== */
+
+.staff-shell {
+    min-height: 100vh;
+}
+
+.staff-topbar {
+    background: var(--navy-deep);
+    color: white;
+    padding: 18px 32px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 12px;
+}
+
+.staff-topbar .brand {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-family: "Lora", serif;
+    font-weight: 700;
+    font-size: 17px;
+}
+
+.staff-topbar .brand .badge {
+    background: var(--amber);
+    font-family: "Poppins", sans-serif;
+    font-size: 10.5px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    padding: 3px 8px;
+    border-radius: 20px;
+}
+
+.staff-topbar .who {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    font-size: 13.5px;
+    color: #C9CEE8;
+}
+
+.staff-topbar .who a {
+    background: rgba(255, 255, 255, 0.12);
+    padding: 8px 14px;
+    border-radius: 6px;
+    color: white;
+    font-weight: 600;
+    font-size: 13px;
+}
+
+.staff-topbar .who a:hover {
+    background: rgba(255, 255, 255, 0.2);
+}
+
+.staff-main {
+    max-width: 1080px;
+    margin: 0 auto;
+    padding: 34px 24px 60px;
+}
+
+.staff-main h2 {
+    font-family: "Lora", serif;
+    font-size: 26px;
+    color: var(--navy);
+    margin-bottom: 6px;
+}
+
+.staff-main .subhead {
+    color: var(--muted);
+    font-size: 14px;
+    margin-bottom: 28px;
+}
+
+
+/* =====================================================
+   SUMMARY CARDS
+===================================================== */
+
+.staff-summary {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1.6fr;
+    gap: 18px;
+    margin-bottom: 34px;
+}
+
+.staff-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    padding: 22px;
+}
+
+.staff-card .label {
+    font-size: 11.5px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: var(--muted);
+    font-weight: 600;
+    margin-bottom: 10px;
+}
+
+.staff-card .big {
+    font-family: "Lora", serif;
+    font-size: 36px;
+    font-weight: 700;
+    color: var(--navy);
+}
+
+.staff-card .big .of5 {
+    font-size: 16px;
+    color: var(--muted);
+    font-weight: 500;
+}
+
+.staff-card .stars {
+    color: var(--amber);
+    font-size: 18px;
+    letter-spacing: 2px;
+    margin-top: 6px;
+}
+
+.breakdown-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 8px;
+    font-size: 12.5px;
+    color: var(--text);
+}
+
+.breakdown-row .stars-label {
+    width: 40px;
+    flex-shrink: 0;
+    color: var(--muted);
+}
+
+.breakdown-row .bar-track {
+    flex: 1;
+    height: 8px;
+    background: #EFEBE2;
+    border-radius: 6px;
+    overflow: hidden;
+}
+
+.breakdown-row .bar-fill {
+    display: block;
+    height: 100%;
+    background: var(--amber);
+    border-radius: 6px;
+}
+
+.breakdown-row .count {
+    width: 22px;
+    text-align: right;
+    flex-shrink: 0;
+    color: var(--muted);
+}
+
+
+/* =====================================================
+   REVIEW LIST
+===================================================== */
+
+.review-list {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
+.review-item {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 20px 22px;
+    box-shadow: var(--shadow);
+}
+
+.review-item-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 12px;
+    flex-wrap: wrap;
+    margin-bottom: 8px;
+}
+
+.review-item .customer {
+    font-weight: 600;
+    color: var(--navy);
+    font-size: 14.5px;
+}
+
+.review-item .customer span {
+    display: block;
+    font-weight: 400;
+    font-size: 12px;
+    color: var(--muted);
+    margin-top: 2px;
+}
+
+.review-item .stars {
+    color: var(--amber);
+    font-size: 16px;
+    letter-spacing: 2px;
+    white-space: nowrap;
+}
+
+.review-item .comment {
+    font-size: 14px;
+    color: var(--text);
+    margin: 8px 0 10px;
+}
+
+.review-item .meta {
+    font-size: 11.5px;
+    color: var(--muted);
+}
+
+.staff-empty {
+    background: var(--card);
+    border: 1px dashed var(--border);
+    border-radius: var(--radius);
+    padding: 40px;
+    text-align: center;
+    color: var(--muted);
+}
+
+.staff-empty .icon {
+    font-size: 30px;
+    margin-bottom: 10px;
+}
+
+
+/* =====================================================
+   RESPONSIVE
+===================================================== */
+
+@media (max-width: 800px) {
+
+    .staff-summary {
+        grid-template-columns: 1fr;
+    }
+
+}
+
+
+/* =====================================================
+   ONLINE ORDERS
+===================================================== */
+
+.orders-section {
+    margin-top: 10px;
+    margin-bottom: 55px;
+}
+
+.section-header {
+    margin-bottom: 22px;
+}
+
+.order-summary {
+    grid-template-columns: repeat(5, 1fr);
+    margin-bottom: 26px;
+}
+
+.order-list {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+}
+
+.order-item {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    padding: 24px;
+}
+
+.order-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 20px;
+    padding-bottom: 16px;
+    border-bottom: 1px solid var(--border);
+}
+
+.order-header h3 {
+    font-family: "Lora", serif;
+    color: var(--navy);
+    font-size: 20px;
+    margin-bottom: 3px;
+}
+
+.order-date {
+    color: var(--muted);
+    font-size: 12px;
+}
+
+.order-status {
+    padding: 7px 12px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 700;
+    white-space: nowrap;
+    background: #FBEED6;
+    color: #6B4A16;
+}
+
+.status-preparing {
+    background: #E8EEF9;
+    color: var(--navy);
+}
+
+.status-ready-for-pickup {
+    background: #EAF3E8;
+    color: var(--success-text);
+}
+
+.status-completed {
+    background: #DFF2E5;
+    color: #24613A;
+}
+
+.status-cancelled {
+    background: var(--error-bg);
+    color: var(--error-text);
+}
+
+.order-customer {
+    display: flex;
+    gap: 18px;
+    flex-wrap: wrap;
+    padding: 16px 0;
+    font-size: 13px;
+}
+
+.order-customer strong {
+    color: var(--navy);
+}
+
+.order-customer span {
+    color: var(--muted);
+}
+
+.order-details {
+    display: grid;
+    grid-template-columns: 1.4fr 1fr;
+    gap: 30px;
+    padding: 18px 0;
+    border-top: 1px solid #EFEBE2;
+}
+
+.order-items > strong {
+    display: block;
+    margin-bottom: 10px;
+    color: var(--navy);
+    font-size: 13px;
+}
+
+.order-product {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+    padding: 7px 0;
+    font-size: 13px;
+    color: var(--text);
+}
+
+.order-payment {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.order-payment > div {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+    font-size: 13px;
+}
+
+.order-payment strong {
+    color: var(--muted);
+    font-weight: 600;
+}
+
+.order-payment span {
+    color: var(--text);
+    text-align: right;
+}
+
+.order-payment .order-total {
+    color: var(--navy);
+    font-weight: 700;
+    font-size: 17px;
+}
+
+.order-notes {
+    margin-top: 5px;
+    padding: 12px 14px;
+    background: #F8F6EF;
+    border-left: 4px solid var(--amber);
+    border-radius: 6px;
+    font-size: 13px;
+    color: var(--text);
+}
+
+.order-notes strong {
+    color: var(--navy);
+}
+
+.order-actions {
+    margin-top: 20px;
+    padding-top: 18px;
+    border-top: 1px solid var(--border);
+}
+
+.order-actions form {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.order-actions label {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--navy);
+}
+
+.order-actions select {
+    min-width: 190px;
+    padding: 9px 12px;
+    border: 1px solid var(--border);
+    border-radius: 7px;
+    background: white;
+    color: var(--text);
+    font-family: inherit;
+    font-size: 13px;
+    cursor: pointer;
+}
+
+.order-actions select:focus {
+    outline: none;
+    border-color: var(--navy);
+    box-shadow: 0 0 0 3px rgba(30, 39, 97, 0.10);
+}
+
+.order-empty {
+    margin-bottom: 0;
+}
+
+.order-error {
+    background: var(--error-bg);
+    color: var(--error-text);
+    border: 1px solid #F0C6C6;
+    border-left: 5px solid var(--error-text);
+    border-radius: 8px;
+    padding: 12px 15px;
+    margin-bottom: 18px;
+    font-size: 13px;
+    font-weight: 600;
+}

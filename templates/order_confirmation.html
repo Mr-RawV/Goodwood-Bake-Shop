@@ -1,0 +1,300 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Order Confirmed - Goodwood Bakeshop</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+
+    <style>
+        .confirmation-page {
+            max-width: 850px;
+            margin: 50px auto;
+            padding: 0 24px 50px;
+        }
+
+        .confirmation-card {
+            background: #ffffff;
+            border: 1px solid #dddddd;
+            border-radius: 14px;
+            padding: 32px;
+            box-shadow: 0 4px 18px rgba(0, 0, 0, 0.08);
+        }
+
+        .success-title {
+            color: #246b45;
+            margin-bottom: 8px;
+        }
+
+        .order-number {
+            font-size: 20px;
+            font-weight: 700;
+            margin-bottom: 25px;
+        }
+
+        .order-info {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+            margin-bottom: 28px;
+        }
+
+        .info-box {
+            border: 1px solid #dddddd;
+            border-radius: 10px;
+            padding: 15px;
+            background: #fafafa;
+        }
+
+        .info-box strong {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .order-items {
+            border-top: 1px solid #dddddd;
+            border-bottom: 1px solid #dddddd;
+            margin: 20px 0;
+        }
+
+        .order-item {
+            display: flex;
+            justify-content: space-between;
+            gap: 20px;
+            padding: 13px 0;
+            border-bottom: 1px solid #eeeeee;
+        }
+
+        .order-item:last-child {
+            border-bottom: 0;
+        }
+
+        .totals {
+            max-width: 350px;
+            margin-left: auto;
+        }
+
+        .total-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 7px 0;
+        }
+
+        .grand-total {
+            font-size: 21px;
+            font-weight: 700;
+            border-top: 2px solid #333333;
+            margin-top: 8px;
+            padding-top: 12px;
+        }
+
+        .status {
+            display: inline-block;
+            padding: 7px 12px;
+            border-radius: 20px;
+            background: #fff0c2;
+            font-weight: 700;
+        }
+
+        .notes {
+            margin-top: 24px;
+            padding: 15px;
+            background: #f7f7f7;
+            border-radius: 10px;
+        }
+
+        .actions {
+            margin-top: 30px;
+            display: flex;
+            gap: 12px;
+        }
+
+        .actions a {
+            display: inline-block;
+            padding: 12px 18px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 700;
+            border: 1px solid #333333;
+        }
+
+        .primary-action {
+            background: #333333;
+            color: #ffffff;
+        }
+
+        .secondary-action {
+            color: #333333;
+            background: #ffffff;
+        }
+    </style>
+</head>
+
+<body>
+
+<main class="confirmation-page">
+
+    <div class="confirmation-card">
+
+        <h1 class="success-title">
+            Order Placed Successfully!
+        </h1>
+
+        <p>
+            Thank you for ordering from Goodwood Bakeshop – Marrickville.
+        </p>
+
+        <div class="order-number">
+            Order #{{ order["id"] }}
+        </div>
+
+        <!-- CUSTOMER AND ORDER INFORMATION -->
+        <div class="order-info">
+
+            <div class="info-box">
+                <strong>Customer</strong>
+
+                {{ order["customer_name"] }}<br>
+                {{ order["customer_email"] }}<br>
+                {{ order["phone"] }}
+            </div>
+
+            <div class="info-box">
+
+                <strong>Order Status</strong>
+
+                <span class="status">
+                    {{ order["status"] }}
+                </span>
+
+                <br>
+                <br>
+
+                <strong>Order Type</strong>
+
+                {{ order["order_type"] }}
+
+            </div>
+
+        </div>
+
+
+        <!-- ORDER ITEMS -->
+        <h2>Order Items</h2>
+
+        <div class="order-items">
+
+            {% for item in order["items"] %}
+
+            <div class="order-item">
+
+                <div>
+                    <strong>
+                        {{ item["name"] }}
+                    </strong>
+
+                    <br>
+
+                    Quantity:
+                    {{ item["quantity"] }}
+                </div>
+
+                <div>
+                    ${{ "%.2f"|format(item["price"] * item["quantity"]) }}
+                </div>
+
+            </div>
+
+            {% endfor %}
+
+        </div>
+
+
+        <!-- ORDER TOTALS -->
+        <div class="totals">
+
+            <div class="total-row">
+
+                <span>
+                    Subtotal
+                </span>
+
+                <span>
+                    ${{ "%.2f"|format(order["subtotal"]) }}
+                </span>
+
+            </div>
+
+
+            <div class="total-row">
+
+                <span>
+                    Tax
+                </span>
+
+                <span>
+                    ${{ "%.2f"|format(order["tax"]) }}
+                </span>
+
+            </div>
+
+
+            <div class="total-row grand-total">
+
+                <span>
+                    Total
+                </span>
+
+                <span>
+                    ${{ "%.2f"|format(order["total"]) }}
+                </span>
+
+            </div>
+
+        </div>
+
+
+        <!-- ORDER NOTES -->
+        {% if order["notes"] %}
+
+        <div class="notes">
+
+            <strong>
+                Order Notes
+            </strong>
+
+            <br>
+
+            {{ order["notes"] }}
+
+        </div>
+
+        {% endif %}
+
+
+        <!-- ACTION BUTTONS -->
+        <div class="actions">
+
+            <a
+                class="primary-action"
+                href="{{ url_for('products_page') }}"
+            >
+                Continue Shopping
+            </a>
+
+            <a
+                class="secondary-action"
+                href="{{ url_for('logout') }}"
+            >
+                Logout
+            </a>
+
+        </div>
+
+    </div>
+
+</main>
+
+</body>
+</html>

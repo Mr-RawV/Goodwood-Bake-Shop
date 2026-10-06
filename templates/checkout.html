@@ -1,0 +1,771 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Checkout - Goodwood Bakeshop</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+
+    <style>
+        /* =====================================================
+           CHECKOUT QUANTITY CONTROLS
+        ===================================================== */
+
+        .quantity-control {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-top: 8px;
+        }
+
+        .quantity-btn {
+            width: 32px;
+            height: 32px;
+
+            border: none;
+            border-radius: 7px;
+
+            background: #D4A373;
+            color: white;
+
+            font-size: 18px;
+            font-weight: 700;
+
+            cursor: pointer;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .quantity-btn:hover {
+            background: #bd8957;
+        }
+
+        .quantity-number {
+            min-width: 30px;
+
+            text-align: center;
+
+            font-weight: 600;
+            font-size: 16px;
+        }
+
+        .item-total {
+            font-weight: 700;
+            color: #D4A373;
+        }
+
+        .cart-item {
+            padding: 18px 0;
+        }
+
+        .cart-item-left {
+            flex: 1;
+        }
+
+        .cart-item-right {
+            text-align: right;
+        }
+
+        .remove-link {
+            display: inline-block;
+            margin-top: 8px;
+
+            color: #a33;
+
+            font-size: 13px;
+            text-decoration: underline;
+        }
+
+        .remove-link:hover {
+            color: #7e2020;
+        }
+
+        .empty-message {
+            text-align: center;
+            padding: 40px 20px;
+        }
+
+        .empty-message h3 {
+            font-family: 'Lora', serif;
+            margin-bottom: 10px;
+        }
+
+
+        /* =====================================================
+           CARD PAYMENT DETAILS
+        ===================================================== */
+
+        .card-details {
+            margin-top: 10px;
+            padding: 20px;
+
+            background: #f8f6ef;
+
+            border: 1px solid #e2ddd1;
+            border-radius: 12px;
+        }
+
+        .card-details input {
+            width: 100%;
+            padding: 12px;
+
+            border: 1px solid #ddd;
+            border-radius: 8px;
+
+            margin-bottom: 15px;
+
+            outline: none;
+        }
+
+        .card-details input:focus {
+            border-color: #D4A373;
+
+            box-shadow:
+                0 0 0 3px
+                rgba(212, 163, 115, 0.18);
+        }
+
+        /* =====================================================
+           PICKUP DATE AND TIME
+        ===================================================== */
+
+        #pickup_time {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            margin-bottom: 6px;
+            outline: none;
+            box-sizing: border-box;
+            font-size: 16px;
+            background: #fff;
+        }
+
+        #pickup_time:focus {
+            border-color: #D4A373;
+
+            box-shadow:
+                0 0 0 3px
+                rgba(212, 163, 115, 0.18);
+        }
+
+        .pickup-help {
+            margin-top: 0;
+            margin-bottom: 20px;
+            font-size: 13px;
+            color: #666;
+        }
+
+        #pickup_date {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            outline: none;
+            box-sizing: border-box;
+        }
+
+        #pickup_date:focus {
+            border-color: #D4A373;
+
+            box-shadow:
+                0 0 0 3px
+                rgba(212, 163, 115, 0.18);
+        }
+
+    </style>
+</head>
+
+
+<body>
+
+<div class="container">
+
+    <!-- =====================================================
+         NAVIGATION
+    ===================================================== -->
+
+    <nav class="navbar">
+
+        <div class="brand">
+            Goodwood Bakeshop
+        </div>
+
+        <div class="nav-links">
+
+            <a href="{{ url_for('products_page') }}">
+                Products
+            </a>
+
+            <a href="{{ url_for('checkout') }}">
+                Checkout
+            </a>
+
+            <a href="{{ url_for('logout') }}"
+               class="logout-btn">
+                Logout
+            </a>
+
+        </div>
+
+    </nav>
+
+
+    <!-- =====================================================
+         CHECKOUT
+    ===================================================== -->
+
+    <div class="checkout-container">
+
+        <h1 class="checkout-title">
+            Your Order
+        </h1>
+
+
+        <div class="checkout-grid">
+
+
+            <!-- =================================================
+                 CART
+            ================================================= -->
+
+            <div class="checkout-card">
+
+                <h3>
+                    Your Cart
+                </h3>
+
+
+                {% if cart %}
+
+                    {% for item in cart %}
+
+                    <div class="cart-item">
+
+
+                        <!-- PRODUCT DETAILS -->
+
+                        <div class="cart-item-left">
+
+                            <div class="cart-item-name">
+                                {{ item.name }}
+                            </div>
+
+                            <div>
+                                ${{ "%.2f"|format(item.price) }}
+                                each
+                            </div>
+
+
+                            <!-- QUANTITY CONTROLS -->
+
+                            <div class="quantity-control">
+
+                                <!-- DECREASE -->
+
+                                <a
+                                    href="{{ url_for(
+                                        'decrease_quantity',
+                                        product=item.name
+                                    ) }}"
+                                    class="quantity-btn"
+                                    title="Decrease quantity"
+                                >
+                                    −
+                                </a>
+
+
+                                <!-- CURRENT QUANTITY -->
+
+                                <span class="quantity-number">
+                                    {{ item.quantity }}
+                                </span>
+
+
+                                <!-- INCREASE -->
+
+                                <a
+                                    href="{{ url_for(
+                                        'add_to_cart',
+                                        product=item.name,
+                                        price=item.price
+                                    ) }}"
+                                    class="quantity-btn"
+                                    title="Increase quantity"
+                                >
+                                    +
+                                </a>
+
+                            </div>
+
+
+                            <!-- REMOVE ENTIRE PRODUCT -->
+
+                            <a
+                                href="{{ url_for(
+                                    'remove_from_cart',
+                                    product=item.name
+                                ) }}"
+                                class="remove-link"
+                            >
+                                Remove
+                            </a>
+
+                        </div>
+
+
+                        <!-- ITEM TOTAL -->
+
+                        <div class="cart-item-right">
+
+                            <div class="item-total">
+
+                                $
+                                {{
+                                    "%.2f"|format(
+                                        item.price * item.quantity
+                                    )
+                                }}
+
+                            </div>
+
+                        </div>
+
+
+                    </div>
+
+                    {% endfor %}
+
+
+                    <!-- CLEAR CART -->
+
+                    <div style="margin-top: 20px;">
+
+                        <a
+                            href="{{ url_for('clear_cart') }}"
+                            class="clear-cart-btn"
+                        >
+                            Clear Cart
+                        </a>
+
+                    </div>
+
+
+                    <!-- TOTAL -->
+
+                    <div class="cart-total">
+
+                        <span>
+                            Subtotal
+                        </span>
+
+                        <span>
+                            ${{ "%.2f"|format(subtotal) }}
+                        </span>
+
+                    </div>
+
+
+                    <div class="cart-total">
+
+                        <span>
+                            GST
+                        </span>
+
+                        <span>
+                            ${{ "%.2f"|format(tax) }}
+                        </span>
+
+                    </div>
+
+
+                    <div class="cart-total">
+
+                        <span>
+                            Total
+                        </span>
+
+                        <span>
+                            ${{ "%.2f"|format(total) }}
+                        </span>
+
+                    </div>
+
+
+                {% else %}
+
+                    <!-- EMPTY CART -->
+
+                    <div class="empty-message">
+
+                        <h3>
+                            Your cart is empty
+                        </h3>
+
+                        <p>
+                            Add some delicious products
+                            from our Products page.
+                        </p>
+
+                        <br>
+
+                        <a
+                            href="{{ url_for('products_page') }}"
+                            class="btn"
+                        >
+                            Browse Products
+                        </a>
+
+                    </div>
+
+                {% endif %}
+
+            </div>
+
+
+            <!-- =================================================
+                 CUSTOMER DETAILS
+            ================================================= -->
+
+            <div class="checkout-card">
+
+                <h3>
+                    Customer Details
+                </h3>
+
+
+                {% if request.args.get("order_error") %}
+                <div class="order-error">
+                    {{ request.args.get("order_error") }}
+                </div>
+                {% endif %}
+
+                {% if cart %}
+
+                <form
+                    class="checkout-form"
+                    method="POST"
+                    action="{{ url_for('place_order') }}"
+                >
+
+                    <label for="name">
+                        Full Name
+                    </label>
+
+                    <input
+                        type="text"
+                        id="name"
+                        name="name"
+                        value="{{ user.name }}"
+                        required
+                    >
+
+
+                    <label for="email">
+                        Email
+                    </label>
+
+                    <input
+                        type="email"
+                        id="email"
+                        name="email"
+                        value="{{ user.email }}"
+                        required
+                    >
+
+
+                    <label for="phone">
+                        Phone Number
+                    </label>
+
+                    <input
+                        type="tel"
+                        id="phone"
+                        name="phone"
+                        placeholder="Enter your phone number"
+                        required
+                    >
+
+
+                    <label for="order_type">
+                        Order Type
+                    </label>
+
+                    <select
+                        id="order_type"
+                        name="order_type"
+                        required
+                    >
+
+                        <option value="">
+                            Select an option
+                        </option>
+
+                        <option value="pickup">
+                            Pickup
+                        </option>
+
+                    </select>
+
+
+                    <!-- PICKUP DATE -->
+
+                    <label for="pickup_date">
+                        Pickup Date
+                    </label>
+
+                    <input
+                        type="date"
+                        id="pickup_date"
+                        name="pickup_date"
+                        min="2026-09-23"
+                        value="2026-09-23"
+                        required
+                    >
+
+
+                    <!-- PICKUP TIME -->
+
+                    <label for="pickup_time">
+                        Pickup Time
+                    </label>
+
+                    <input
+                        type="time"
+                        id="pickup_time"
+                        name="pickup_time"
+                        min="10:00"
+                        max="17:00"
+                        required
+                    >
+
+                    <p class="pickup-help">
+                        Choose your preferred pickup time between
+                        10:00 AM and 5:00 PM.
+                    </p>
+
+
+                    <!-- PAYMENT METHOD -->
+
+                    <label for="payment">
+                        Payment Method
+                    </label>
+
+                    <select
+                        id="payment"
+                        name="payment"
+                        required
+                        onchange="toggleCardDetails()"
+                    >
+
+                        <option value="">
+                            Select payment method
+                        </option>
+
+                        <option value="card">
+                            Pay by Card
+                        </option>
+
+                        <option value="pickup">
+                            Pay at Pickup
+                        </option>
+
+                    </select>
+
+
+                    <!-- CARD DETAILS -->
+
+                    <div
+                        id="card-details"
+                        class="card-details"
+                        style="display: none;"
+                    >
+
+                        <label for="card_name">
+                            Cardholder Name
+                        </label>
+
+                        <input
+                            type="text"
+                            id="card_name"
+                            name="card_name"
+                            placeholder="Enter cardholder name"
+                        >
+
+
+                        <label for="card_number">
+                            Card Number
+                        </label>
+
+                        <input
+                            type="text"
+                            id="card_number"
+                            name="card_number"
+                            placeholder="1234 5678 9012 3456"
+                            maxlength="19"
+                            inputmode="numeric"
+                        >
+
+
+                        <div
+                            style="
+                                display: grid;
+                                grid-template-columns: 1fr 1fr;
+                                gap: 15px;
+                            "
+                        >
+
+                            <div>
+
+                                <label for="expiry">
+                                    Expiry Date
+                                </label>
+
+                                <input
+                                    type="text"
+                                    id="expiry"
+                                    name="expiry"
+                                    placeholder="MM/YY"
+                                    maxlength="5"
+                                >
+
+                            </div>
+
+
+                            <div>
+
+                                <label for="cvv">
+                                    CVV
+                                </label>
+
+                                <input
+                                    type="password"
+                                    id="cvv"
+                                    name="cvv"
+                                    placeholder="123"
+                                    maxlength="4"
+                                    inputmode="numeric"
+                                >
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <label for="notes">
+                        Order Notes
+                    </label>
+
+                    <textarea
+                        id="notes"
+                        name="notes"
+                        placeholder="Any special instructions?"
+                    ></textarea>
+
+
+                    <button
+                        type="submit"
+                        class="btn"
+                    >
+                        Place Order
+                    </button>
+
+                </form>
+
+                {% else %}
+
+                <p>
+                    Please add products to your cart
+                    before checking out.
+                </p>
+
+                {% endif %}
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- =====================================================
+         FOOTER
+    ===================================================== -->
+
+    <footer class="footer">
+
+        <p>
+            © 2026 Goodwood Bakeshop – Marrickville
+        </p>
+
+        <p>
+            297 Marrickville Rd, Marrickville NSW 2204
+            |
+            0420543837
+        </p>
+
+    </footer>
+
+</div>
+
+
+
+    <script>
+
+        function toggleCardDetails() {
+
+            const paymentMethod =
+                document.getElementById("payment").value;
+
+            const cardDetails =
+                document.getElementById("card-details");
+
+            const cardName =
+                document.getElementById("card_name");
+
+            const cardNumber =
+                document.getElementById("card_number");
+
+            const expiry =
+                document.getElementById("expiry");
+
+            const cvv =
+                document.getElementById("cvv");
+
+
+            if (paymentMethod === "card") {
+
+                cardDetails.style.display = "block";
+
+                cardName.required = true;
+                cardNumber.required = true;
+                expiry.required = true;
+                cvv.required = true;
+
+            } else {
+
+                cardDetails.style.display = "none";
+
+                cardName.required = false;
+                cardNumber.required = false;
+                expiry.required = false;
+                cvv.required = false;
+
+                cardName.value = "";
+                cardNumber.value = "";
+                expiry.value = "";
+                cvv.value = "";
+            }
+        }
+
+    </script>
+
+</body>
+</html>

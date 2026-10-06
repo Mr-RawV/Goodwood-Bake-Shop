@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Goodwood Bake Shop - Register</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='styles.css') }}">
+</head>
+
+<body class="login-page">
+
+    <div class="login-card">
+
+        <div class="brand-mark">🍞</div>
+
+        <h1>Goodwood Bake Shop</h1>
+
+        <p class="tagline">
+            Create your account
+        </p>
+
+        {% if error %}
+        <div class="alert">
+            {{ error }}
+        </div>
+        {% endif %}
+
+        <form method="POST"
+              action="{{ url_for('register') }}">
+
+            <label for="name">
+                Full Name
+            </label>
+
+            <input
+                type="text"
+                id="name"
+                name="name"
+                placeholder="Enter your name"
+                required
+            >
+
+
+            <label for="email">
+                Email
+            </label>
+
+            <input
+                type="email"
+                id="email"
+                name="email"
+                placeholder="Enter your email"
+                required
+            >
+
+
+            <label for="password">
+                Password
+            </label>
+
+            <input
+                type="password"
+                id="password"
+                name="password"
+                placeholder="Create a password"
+                required
+            >
+
+
+            <button
+                type="submit"
+                class="primary full">
+                Create Account
+            </button>
+
+        </form>
+
+
+        <p class="register-link">
+            Already have an account?
+
+            <a href="{{ url_for('login') }}">
+                Login
+            </a>
+        </p>
+
+    </div>
+
+</body>
+</html>

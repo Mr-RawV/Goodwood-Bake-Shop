@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+
+    <title>Goodwood Bake Shop - Login</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='styles.css') }}?v=2">
+</head>
+
+<body class="login-page">
+
+    <div class="login-card">
+
+        <!-- Logo -->
+        <div class="brand-mark">
+            🍞
+        </div>
+
+        <!-- Business Name -->
+        <h1>
+            Goodwood Bake Shop
+        </h1>
+
+        <!-- Tagline -->
+        <p class="tagline">
+            Freshly baked with love
+        </p>
+
+        <!-- Login Error -->
+        {% if error %}
+        <div class="alert">
+            {{ error }}
+        </div>
+        {% endif %}
+
+        <!-- Customer Login Form -->
+        <form method="post"
+              action="{{ url_for('login') }}">
+
+            <label for="email">
+                Email
+            </label>
+
+            <input
+                id="email"
+                type="email"
+                name="email"
+                required
+                autocomplete="username"
+            >
+
+            <label for="password">
+                Password
+            </label>
+
+            <input
+                id="password"
+                type="password"
+                name="password"
+                required
+                autocomplete="current-password"
+            >
+
+            <button
+                class="primary full"
+                type="submit">
+                Login
+            </button>
+
+        </form>
+
+        <!-- Demo Login -->
+        <div class="demo-box">
+
+            <strong>
+                Demo login
+            </strong>
+
+            <br>
+
+            Email: demo@goodwood.com
+
+            <br>
+
+            Password: Goodwood123
+
+        </div>
+
+        <!-- Customer Registration -->
+        <p class="register-link">
+            Don't have an account?
+
+            <a href="{{ url_for('register') }}">
+                Register
+            </a>
+        </p>
+
+        <!-- Staff Portal -->
+        <p class="staff-login-link">
+            Staff member?
+
+            <a href="{{ url_for('staff_login') }}">
+                Go to Staff Portal
+            </a>
+        </p>
+
+    </div>
+
+</body>
+</html>
